@@ -5,6 +5,6 @@ metadata:
 data:
    # note que os endereços variam assim que os services são derrubados.
    # execute um `kubectl get svc` para recuperar os IPs
-   DB_URL: jdbc:postgresql://10.108.193.131:5432/postgres
+   DB_URL: jdbc:postgresql://10.109.75.130:5432/postgres
    ERP_ITAU_CLIENT_URL: http://10.111.108.25:9091/api/v1 
    BCB_CLIENT_URL: http://10.109.127.64:8082/api/v1
