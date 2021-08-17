@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: key-manager-grpc-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: key-manager-grpc
+  template:
+    metadata:
+      labels:
+        app: key-manager-grpc
+    spec:
+      containers:
+        - name: key-manager-grpc-container
+          image: rayllandersonzup/key-manager-grpc:1.0
+          ports: 
+            - containerPort: 50051
+              name: grpc-server
+            - containerPort: 8085
+              name: health-check
+              protocol: TCP
+          env:
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+          envFrom: 
+            - configMapRef: 
+                name: key-manager-grpc-confimap
+          resources:
+              requests:
+                memory: "256Mi"
+                cpu: "700m"
+              limits:
+                memory: "512Mi"
+                cpu: "900m"
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8085
+              scheme: HTTP
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8085
+              scheme: HTTP
+            initialDelaySeconds: 60
