@@ -29,7 +29,7 @@ spec:
                   key: password
           envFrom: 
             - configMapRef: 
-                name: key-manager-grpc-confimap
+                name: key-manager-grpc-configmap
           resources:
               requests:
                 memory: "256Mi"
