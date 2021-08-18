@@ -38,7 +38,7 @@ O server gRPC depende disretamente dos microservices do Itaú e Banco central e 
   kubectl get pods --watch
 ```
 
-### Deeletando 
+### Deletando 
 ```shell
   kubectl delete -f . # deleta todos os manifestos em execução da pasta
   
