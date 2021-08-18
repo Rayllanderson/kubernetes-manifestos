@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: erp-itau-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: erp-itau
+  template:
+    metadata:
+      labels:
+        app: erp-itau
+    spec:
+      containers:
+        - name: erp-itau-container
+          image: public.ecr.aws/d8b2x5c9/orange-stack-sat-itau-erp
+          ports: 
+            - containerPort: 9091
+          resources:
+              requests:
+                memory: "256Mi"
+                cpu: "700m"
+              limits:
+                memory: "512Mi"
+                cpu: "900m"

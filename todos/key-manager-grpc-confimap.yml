@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: key-manager-grpc-confimap
+data:
+   DB_URL: jdbc:postgresql://postgres-clusterip:5432/postgres
+   ERP_ITAU_CLIENT_URL: http://erp-itau-clusterip:9091/api/v1 
+   BCB_CLIENT_URL: http://bcb-clusterip:8082/api/v1
