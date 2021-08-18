@@ -17,10 +17,16 @@ Ou execute todos de uma vez [aqui](https://github.com/Rayllanderson/kubernetes-m
   kubectl get pods --watch
 ```
 
-### Deeletando 
+### Deletando 
 ```shell
   kubectl delete -f . # deleta todos os manifestos em execução da pasta
   
   kubectl delete -f nome-do-arquivo-yml # deleta um manofesto específico em execução
 
 ```
+
+### Acessando
+
+O nosso serviço é exposto externamente, através de um NodePort. Disponível na porta `30003`.
+
+Portando, para acessar o serviço Rest, basta acessar com um client HTTP na porta `30003`.
