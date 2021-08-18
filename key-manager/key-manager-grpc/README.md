@@ -45,3 +45,10 @@ O server gRPC depende disretamente dos microservices do Itaú e Banco central e 
   kubectl delete -f nome-do-arquivo-yml # deleta um manofesto específico em execução
 
 ```
+
+### Acessando
+
+O nosso serviço aqui é exposto externamente, através de um NodePort. Disponível na porta `30001`.
+
+Portando, para acessar o serviço gRPC, basta acessar com um client RPC na porta `30001`.
+
