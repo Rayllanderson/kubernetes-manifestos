@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: key-manager-rest-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: key-manager-rest
+  template:
+    metadata:
+      labels:
+        app: key-manager-rest
+    spec:
+      containers:
+        - name: key-manager-rest-container
+          image: rayllandersonzup/key-manager-rest:2.0
+          ports: 
+            - containerPort: 8080
+          envFrom: 
+            - configMapRef: 
+                name: key-manager-rest-configmap
+          resources:
+              requests:
+                memory: "256Mi"
+                cpu: "700m"
+              limits:
+                memory: "512Mi"
+                cpu: "900m"
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
